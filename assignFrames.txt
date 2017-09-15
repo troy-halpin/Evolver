@@ -1,0 +1,37 @@
+//assignFrames();
+var xos = sprite_width/2; var yos = sprite_height/2;
+with(argument0){
+    startup = 0; active = 0; recovery = 0; 
+    
+    for(i=0;i<image_number;i++)
+        frame[i] = "blank";
+        
+    for(i=0;i<image_number;i++){
+        image_index = i;
+        if !collision_rectangle(x-xos,y-yos,x+xos,y+yos,id,true,false)
+            frame[i] = "startup";
+        else break;
+        }
+        
+    for(i=0;i<image_number;i++){
+        image_index = i;
+        if collision_rectangle(x-xos,y-yos,x+xos,y+yos,id,true,false)
+            frame[i] = "active";
+        else break;
+        }
+        
+    for(i=image_number-1;i>=0;i--){
+        image_index = i;
+        if !collision_rectangle(x-xos,y-yos,x+xos,y+yos,id,true,false)
+            frame[i] = "recovery";
+        else break;
+        }
+        
+    for(i=0;i<image_number;i++){
+        switch(frame[i]){
+            case "startup": startup++; break;
+            case "active": active++; break;
+            case "recovery": recovery++; break;
+            }
+        }
+    }
